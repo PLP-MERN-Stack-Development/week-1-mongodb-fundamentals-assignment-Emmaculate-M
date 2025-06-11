@@ -45,3 +45,38 @@ Your work will be automatically submitted when you push to your GitHub Classroom
 - [MongoDB Documentation](https://docs.mongodb.com/)
 - [MongoDB University](https://university.mongodb.com/)
 - [MongoDB Node.js Driver](https://mongodb.github.io/node-mongodb-native/) 
+
+
+## README UPDATE
+
+
+# PLP Bookstore MongoDB Project
+
+## Objective
+Learn MongoDB basics and advanced techniques including CRUD operations, advanced queries, aggregation, and indexing.
+
+## Setup Instructions
+
+1. **Install MongoDB** - Did the local installation. 
+2. Clone the project.
+3. Run the insert script:
+
+```
+node insert_books.js
+```
+
+4. Use the `queries.js` file to run MongoDB queries using MongoDB Compass.
+
+## 📂 Files
+
+- `insert_books.js`: Script to insert 14 book documents into the `books` collection of `plp_bookstore` database.
+- `queries.js`: MongoDB queries including CRUD, advanced queries, aggregation pipelines, and indexing.
+- `README.md`: Setup instructions and overview.
+
+## ✅ Functionality
+
+- Create and insert sample book data
+- Perform read/update/delete operations
+- Filter, sort, paginate results
+- Run aggregations (e.g., average price per genre)
+- Create and test indexes with performance insights

@@ -3,14 +3,14 @@
 // Import MongoDB client
 const { MongoClient } = require('mongodb');
 
-// Connection URI (replace with your MongoDB connection string if using Atlas)
+// Connection URI 
 const uri = 'mongodb://localhost:27017';
 
 // Database and collection names
 const dbName = 'plp_bookstore';
 const collectionName = 'books';
 
-// Sample book data
+// Book data
 const books = [
   {
     title: 'To Kill a Mockingbird',
@@ -27,7 +27,7 @@ const books = [
     author: 'George Orwell',
     genre: 'Dystopian',
     published_year: 1949,
-    price: 10.99,
+    price: 11.99,
     in_stock: true,
     pages: 328,
     publisher: 'Secker & Warburg'
@@ -40,7 +40,7 @@ const books = [
     price: 9.99,
     in_stock: true,
     pages: 180,
-    publisher: 'Charles Scribner\'s Sons'
+    publisher: "Charles Scribner's Sons"
   },
   {
     title: 'Brave New World',
@@ -83,16 +83,6 @@ const books = [
     publisher: 'T. Egerton, Whitehall'
   },
   {
-    title: 'The Lord of the Rings',
-    author: 'J.R.R. Tolkien',
-    genre: 'Fantasy',
-    published_year: 1954,
-    price: 19.99,
-    in_stock: true,
-    pages: 1178,
-    publisher: 'Allen & Unwin'
-  },
-  {
     title: 'Animal Farm',
     author: 'George Orwell',
     genre: 'Political Satire',
@@ -123,6 +113,16 @@ const books = [
     publisher: 'Harper & Brothers'
   },
   {
+    title: 'The Lord of the Rings',
+    author: 'J.R.R. Tolkien',
+    genre: 'Fantasy',
+    published_year: 1954,
+    price: 19.99,
+    in_stock: true,
+    pages: 1178,
+    publisher: 'Allen & Unwin'
+  },
+  {
     title: 'Wuthering Heights',
     author: 'Emily Brontë',
     genre: 'Gothic Fiction',
@@ -131,68 +131,27 @@ const books = [
     in_stock: true,
     pages: 342,
     publisher: 'Thomas Cautley Newby'
+  },
+  {
+    title: 'The Da Vinci Code',
+    author: 'Dan Brown',
+    genre: 'Thriller',
+    published_year: 2003,
+    price: 13.95,
+    in_stock: true,
+    pages: 689,
+    publisher: 'Doubleday'
+  },
+  {
+    title: 'The Girl with the Dragon Tattoo',
+    author: 'Stieg Larsson',
+    genre: 'Crime',
+    published_year: 2005,
+    price: 15.99,
+    in_stock: true,
+    pages: 465,
+    publisher: 'Norstedts Förlag'
   }
 ];
 
-// Function to insert books into MongoDB
-async function insertBooks() {
-  const client = new MongoClient(uri);
-
-  try {
-    // Connect to the MongoDB server
-    await client.connect();
-    console.log('Connected to MongoDB server');
-
-    // Get database and collection
-    const db = client.db(dbName);
-    const collection = db.collection(collectionName);
-
-    // Check if collection already has documents
-    const count = await collection.countDocuments();
-    if (count > 0) {
-      console.log(`Collection already contains ${count} documents. Dropping collection...`);
-      await collection.drop();
-      console.log('Collection dropped successfully');
-    }
-
-    // Insert the books
-    const result = await collection.insertMany(books);
-    console.log(`${result.insertedCount} books were successfully inserted into the database`);
-
-    // Display the inserted books
-    console.log('\nInserted books:');
-    const insertedBooks = await collection.find({}).toArray();
-    insertedBooks.forEach((book, index) => {
-      console.log(`${index + 1}. "${book.title}" by ${book.author} (${book.published_year})`);
-    });
-
-  } catch (err) {
-    console.error('Error occurred:', err);
-  } finally {
-    // Close the connection
-    await client.close();
-    console.log('Connection closed');
-  }
-}
-
-// Run the function
-insertBooks().catch(console.error);
-
-/*
- * Example MongoDB queries you can try after running this script:
- *
- * 1. Find all books:
- *    db.books.find()
- *
- * 2. Find books by a specific author:
- *    db.books.find({ author: "George Orwell" })
- *
- * 3. Find books published after 1950:
- *    db.books.find({ published_year: { $gt: 1950 } })
- *
- * 4. Find books in a specific genre:
- *    db.books.find({ genre: "Fiction" })
- *
- * 5. Find in-stock books:
- *    db.books.find({ in_stock: true })
- */ 
+db.books.insertMany(books);
