@@ -58,7 +58,7 @@ Learn MongoDB basics and advanced techniques including CRUD operations, advanced
 ## Setup Instructions
 
 1. **Install MongoDB** - Did the local installation. 
-2. Clone the project.
+2. Clone the project. git clone https://github.com/PLP-MERN-Stack-Development/week-1-mongodb-fundamentals-assignment-Emmaculate-M.git
 3. Run the insert script:
 
 ```
